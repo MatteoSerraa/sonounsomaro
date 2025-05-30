@@ -28,6 +28,7 @@ iKart Sites è il sito ufficiale della pista indoor piu grande in europo "IKART"
 
 - Python 3.8 o superiore
 - Flask 2.2.3
+- SQLite3 (incluso in Python)
 
 ## Configurazione delle variabili d'ambiente
 
@@ -39,16 +40,16 @@ SECRET_KEY=x
 ## Struttura del progetto
 
 ```
-PaginaRegistrazione/
+iKartSites/
 ├── app.py                  # File principale dell'applicazione Flask
-├── tempi.json                  # File json con i tempi all interno
-├── utenti.json                  # File json con le credenziali degli utenti all interno
+├── schema.sql             # Schema del database SQLite
+├── ikart.db              # Database SQLite
 ├── static/               # css
-│   └── style.css    # css  
-└── templates/              # Template html
-    ├── index.html            # Pagina principale
-    ├── login.html            # Pagina per effettuare il login 
-    ├── tempi.html        # Pagina visualizzazione tempi
+│   └── style.css         # css  
+└── templates/            # Template html
+    ├── index.html        # Pagina principale
+    ├── login.html        # Pagina per effettuare il login 
+    └── tempi.html        # Pagina visualizzazione tempi
 ```
 
 - Gestione delle sessioni utente

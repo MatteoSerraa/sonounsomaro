@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.secret_key = 'x'
 
 def get_db():
-    db = sqlite3.connect('ikart.db')
+    db = sqlite3.connect('sonounsomaro/iKartSites/ikart.db')
     db.row_factory = sqlite3.Row
     return db
 

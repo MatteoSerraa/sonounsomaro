@@ -1,0 +1,332 @@
+/* Generale */
+body {
+    font-family: 'Inter', sans-serif;  /* Cambiato il font in Inter */
+    margin: 0;
+    padding: 0;
+    background: url('https://4kwallpapers.com/images/wallpapers/dark-background-abstract-background-network-3d-background-3840x2160-8324.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    overflow-x: hidden;
+  }
+  
+  /* Navbar */
+  nav {
+    background-color: #000;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    border: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #111;
+    border-radius: 10px;
+  }
+  
+  nav ul li {
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    color: #ff3333;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #ff3333;
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  nav ul li a:hover {
+    color: black;
+    background-color: #ff3333;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    transform: scale(1.1);
+    animation: glowEffect 1.5s infinite alternate;
+  }
+  
+  /* Animazione di retroilluminazione */
+  @keyframes glowEffect {
+    0% {
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    }
+  }
+  
+  /* Header */
+  header {
+    text-align: center;
+    margin: 150px 0;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    text-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    text-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);
+  }
+  
+  /* Hero section */
+  #hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-color: #000;
+    background-image: url('https://t3.ftcdn.net/jpg/05/86/26/48/360_F_586264890_luiZmMRqnrPYLaXyANrOs06uXli7iJVv.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 50px;
+    border: 5px solid transparent;
+    box-shadow: 0 -10px 15px rgba(255, 0, 0, 0.8), 0 10px 15px rgba(255, 0, 0, 0.8);
+  }
+  
+  .info-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+  }
+  
+  #kart-3d-container {
+    width: 280px;
+    height: 280px;
+    background-color: #222;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 25px rgba(255, 0, 0, 0.3);
+    border: 3px solid #ff3333;
+    animation: backgroundGlow 3s infinite, containerPulse 1.5s ease-in-out infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .info-text {
+    width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba(255, 0, 0, 0.473);
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  @keyframes containerPulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 30px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.7), inset 0 0 40px rgba(255, 0, 0, 0.4);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 30px rgba(255, 0, 0, 0.3);
+    }
+  }
+  
+  @keyframes backgroundGlow {
+    0% {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+    50% {
+      background-color: rgba(255, 0, 0, 0.3);
+    }
+    100% {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  }
+  
+  /* Contenitore informazioni con retroilluminazione */
+  .info-container {
+    margin-left: 50px;
+    padding: 20px;
+    background-color: rgba(255, 0, 0, 0.7);  /* Rosso leggermente trasparente */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  }
+  
+  /* Animazione slide-in */
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Sezioni con informazioni */
+  #info, #dettagli, #servizi {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin: 50px 0;
+    opacity: 0;
+    animation: fadeInSection 2s forwards;
+  }
+  
+  #info div, #dettagli div, #servizi div {
+    width: 30%;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 0, 0, 0.5);  /* Rosso con trasparenza */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    transform: translateY(30px);
+    animation: slideUp 1s ease-out forwards;
+  }
+  
+  /* Animazioni di fade-in per le sezioni */
+  @keyframes fadeInSection {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    0% {
+      transform: translateY(30px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Effetto hover sui div */
+  #info div:hover, #dettagli div:hover, #servizi div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    background-color: #111;
+    padding: 20px;
+  }
+  
+  #info {
+    display: flex;
+    flex-wrap: wrap; /* Permette il ritorno a capo */
+    gap: 20px;
+  }
+  .full-width {
+    flex-basis: 100%;
+  }
+  
+  
+  #prezzi {
+    padding: 50px 20px;
+    text-align: center;
+    color: white; /* colore del testo chiaro */
+  }
+  
+  .section-title {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: rgb(255, 255, 255); /* stesso rosso usato per titoli */
+  }
+  
+  .pricing-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .price-card {
+    background-color: #1c1c1c; /* sfondo come gli altri container */
+    border: 2px solid rgb(196, 7, 7);     /* bordo rosso */
+    border-radius: 20px;
+    padding: 20px 30px;
+    width: 250px;
+    box-shadow: 0 0 20px red;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+  }
+  
+  .price-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px white; /* stesso effetto hover */
+  }
+  
+  .price {
+    font-size: 1.8em;
+    color: white;
+    margin: 10px 0;
+  }
+  .price-description {
+    font-size: 1.2em;
+    color: #ccc; /* colore del testo secondario */
+  }
+  
+  #prenota {
+    padding: 50px 20px;
+    text-align: center;
+    color: white; /* colore del testo chiaro */
+  }
+  
+  .section-title {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: rgb(255, 255, 255); /* stesso rosso usato per titoli */
+  }
+  
+  .container-rosso {
+    position: absolute;
+    top: 120px; /* distanza dall'alto */
+    left: 42%;
+    transform: translateX(-50%); /* centra solo orizzontalmente */
+    width: 280px;
+    height: 280px;
+    background-color: #222;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 25px rgba(255, 0, 0, 0.3);
+    border: 3px solid #ff3333;
+    animation: backgroundGlow 3s infinite, containerPulse 1.5s ease-in-out infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .info-text {
+    width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: red;
+    border-radius: 10px;
+    position: relative;
+    color: white; /* colore del testo chiaro */
+    text-align: center; /* centra il testo */
+  }
+  
+  

@@ -1,9 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import json
 from datetime import datetime
+import sqlite3
+import os
 
 app = Flask(__name__)
-app.secret_key = 'x'  # Necessaria per usare le sessioni
+app.secret_key = 'x'
+
+def get_db():
+    db = sqlite3.connect('ikart.db')
+    db.row_factory = sqlite3.Row
+    return db
+
+def init_db():
+    if not os.path.exists('ikart.db'):
+        db = get_db()
+        with app.open_resource('schema.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
+        db.close()
 
 @app.route('/')
 def index():
@@ -14,15 +28,18 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
-        with open('utenti.json') as f:
-            utenti = json.load(f)
-
-        if username in utenti and utenti    [username] == password:
+        
+        db = get_db()
+        user = db.execute('SELECT * FROM UTENTI WHERE username = ? AND password_hash = ?',
+                         (username, password)).fetchone()
+        db.close()
+        
+        if user:
             session['username'] = username
+            session['user_id'] = user['ID']
             return redirect('/tempi')
         else:
-            return 'Login fallito'
+            return render_template('login.html', errore='Credenziali non valide')
 
     return render_template('login.html')
 
@@ -31,23 +48,23 @@ def tempi():
     if 'username' not in session:
         return redirect('/login')
 
-    username = session['username']
-
-    try:
-        with open('tempi.json', 'r') as f:
-            tutti_i_tempi = json.load(f)
-            tempi_utente = tutti_i_tempi.get(username, [])
-    except Exception as e:
-        print(f"Errore nel caricamento di tempi.json: {e}")
-        tempi_utente = []
+    db = get_db()
+    tempi_utente = db.execute('''
+        SELECT tempo, data 
+        FROM TEMPI 
+        WHERE utente_id = (SELECT ID FROM UTENTI WHERE username = ?)
+        ORDER BY data DESC
+    ''', (session['username'],)).fetchall()
+    db.close()
 
     return render_template('tempi.html', tempi=tempi_utente)
 
 @app.route('/logout')
 def logout():
     session.pop('username', None)
+    session.pop('user_id', None)
     return redirect('/login')
-##
+
 @app.template_filter('format_date')
 def format_date(value):
     try:
@@ -58,6 +75,6 @@ def format_date(value):
     except:
         return value  # Se il formato è errato, restituisce il valore originale
 
-
 if __name__ == '__main__':
+    init_db()
     app.run(debug=True)
